@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura Viajes - Agencia de Turismo</title>
+    
+    <!-- ESTILOS CSS DENTRO DEL HTML -->
+    <style>
+        /* Reiniciamos los estilos predeterminados del navegador */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos generales del cuerpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7fb;
+        }
+
+        /* Encabezado principal */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contenedor del navegación */
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Logo de la agencia */
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Menú de navegación */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        /* Banner principal (Hero section) */
+        .hero {
+            background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), 
+                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=600&fit=crop') center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            background-color: #ffd700;
+            color: #333;
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ffed4e;
+            transform: scale(1.05);
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sección de destinos */
+        .destinos {
+            padding: 60px 20px;
+            background-color: white;
+        }
+
+        .destinos h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #667eea;
+        }
+
+        /* Grid de tarjetas de destinos */
+        .grid-destinos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Estilos de las tarjetas */
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .card .precio {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Sección de paquetes */
+        .paquetes {
+            padding: 60px 20px;
+            background-color: #f4f7fb;
+        }
+
+        .paquetes h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #667eea;
+        }
+
+        .grid-paquetes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .paquete {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .paquete h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .paquete .duracion {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .paquete .descripcion {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        /* Sección Nosotros */
+        .nosotros {
+            padding: 60px 20px;
+            background-color: white;
+        }
+
+        .nosotros-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .nosotros h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .nosotros p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Sección de contacto */
+        .contacto {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contacto-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contacto h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        /* Formulario */
+        .formulario {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .formulario input,
+        .formulario textarea {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .formulario textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .formulario button {
+            background-color: #ffd700;
+            color: #333;
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .formulario button:hover {
+            background-color: #ffed4e;
+            transform: scale(1.05);
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: #ffd700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive - Adaptar a móviles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .grid-destinos,
+            .grid-paquetes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ENCABEZADO Y NAVEGACIÓN -->
+    <header>
+        <div class="navbar">
+            <div class="logo">✈️ Aventura Viajes</div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#destinos">Destinos</a></li>
+                    <li><a href="#paquetes">Paquetes</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BANNER PRINCIPAL -->
+    <section id="inicio" class="hero">
+        <h1>Descubre el Mundo con Aventura Viajes</h1>
+        <p>Viaja con seguridad, comodidad y aventura a los destinos más hermosos</p>
+        <button class="btn">Explorar Destinos</button>
+    </section>
+
+    <!-- SECCIÓN DE DESTINOS -->
+    <section id="destinos" class="destinos">
+        <div class="container">
+            <h2>Destinos Populares</h2>
+            <div class="grid-destinos">
+                <!-- Destino 1 -->
+                <div class="card">
+                    <div class="card-img">🏖️</div>
+                    <div class="card-body">
+                        <h3>Cartagena</h3>
+                        <p>Descubre las playas paradisíacas y la arquitectura colonial de Cartagena. Un destino perfecto para disfrutar del mar y la historia.</p>
+                        <p class="precio">Desde $450.000</p>
+                    </div>
+                </div>
+
+                <!-- Destino 2 -->
+                <div class="card">
+                    <div class="card-img">🌴</div>
+                    <div class="card-body">
+                        <h3>San Andrés</h3>
+                        <p>Vive la experiencia de playas de arena blanca y aguas cristalinas. Ideal para familias y parejas que buscan relajación.</p>
+                        <p class="precio">Desde $550.000</p>
+                    </div>
+                </div>
+
+                <!-- Destino 3 -->
+                <div class="card">
+                    <div class="card-img">🏔️</div>
+                    <div class="card-body">
+                        <h3>Medellín</h3>
+                        <p>Explora la ciudad de la eterna primavera, conoce su innovación, cultura y naturaleza en un solo lugar.</p>
+                        <p class="precio">Desde $350.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PAQUETES -->
+    <section id="paquetes" class="paquetes">
+        <div class="container">
+            <h2>Paquetes Recomendados</h2>
+            <div class="grid-paquetes">
+                <!-- Paquete 1 -->
+                <div class="paquete">
+                    <h3>Paquete Familiar</h3>
+                    <p class="duracion">3 días y 2 noches</p>
+                    <p class="descripcion">Perfecto para familias. Incluye hotel 4 estrellas, desayuno y tour guiado.</p>
+                    <p class="precio">$1.200.000 por familia</p>
+                </div>
+
+                <!-- Paquete 2 -->
+                <div class="paquete">
+                    <h3>Paquete Luna de Miel</h3>
+                    <p class="duracion">5 días y 4 noches</p>
+                    <p class="descripcion">Para parejas en busca de romance. Incluye spa, cena privada y playa privada.</p>
+                    <p class="precio">$2.500.000 por pareja</p>
+                </div>
+
+                <!-- Paquete 3 -->
+                <div class="paquete">
+                    <h3>Paquete Aventurero</h3>
+                    <p class="duracion">4 días y 3 noches</p>
+                    <p class="descripcion">Para los amigos aventureros. Incluye senderismo, snorkel y actividades acuáticas.</p>
+                    <p class="precio">$1.800.000 por persona</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN NOSOTROS -->
+    <section id="nosotros" class="nosotros">
+        <div class="container">
+            <div class="nosotros-content">
+                <h2>Sobre Aventura Viajes</h2>
+                <p>
+                    Somos una agencia de viajes con más de 15 años de experiencia en el mercado. 
+                    Nuestro objetivo es ofrecer a nuestros clientes experiencias inolvidables, 
+                    viajes seguros y con el mejor servicio al cliente.
+                </p>
+                <p>
+                    Contamos con un equipo profesional dispuesto a ayudarte a planificar 
+                    el viaje de tus sueños. ¡Confía en nosotros para tu próxima aventura!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section id="contacto" class="contacto">
+        <div class="contacto-content">
+            <h2>Contacto</h2>
+            <form class="formulario">
+                <input type="text" placeholder="Tu nombre completo" required>
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <input type="tel" placeholder="Tu teléfono" required>
+                <textarea placeholder="Cuéntanos sobre tu viaje ideal..." required></textarea>
+                <button type="submit">Enviar solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>&copy; 2026 Aventura Viajes. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Preguntas Frecuentes</a>
+        </div>
+        <p>Email: info@aventuraviajes.com | Teléfono: +57 1 2345 6789</p>
+    </footer>
+</body>
+</html>
